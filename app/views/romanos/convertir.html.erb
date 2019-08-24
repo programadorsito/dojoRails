@@ -1,0 +1,30 @@
+<div style="text-align:center;">
+  <input id="decimal" placerholder="Ingrese numero decimal" onchange="document.getElementById('resultado').innerHTML=integer_to_roman(parseInt(this.value));" />
+  <button onclick="convertir()">Convertir a romano</button>
+  <p id="resultado"></p>
+</div>
+
+<script>
+    function integer_to_roman(num) {
+if (typeof num !== 'number') 
+return false; 
+
+var digits = String(+num).split(""),
+key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+"","I","II","III","IV","V","VI","VII","VIII","IX"],
+roman_num = "",
+i = 3;
+while (i--)
+roman_num = (key[+digits.pop() + (i * 10)] || "") + roman_num;
+return Array(+digits.join("") + 1).join("M") + roman_num;
+}
+
+console.log(integer_to_roman(27));
+
+function convertir(numero){
+    if(!numero)
+        numero=parseInt(document.getElementById("decimal").value);
+    document.getElementById("resultado").innerHTML=integer_to_roman(numero);
+}
+</script>
